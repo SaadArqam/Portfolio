@@ -1,103 +1,136 @@
 import Image from "next/image";
+import { FlameIcon, CloudIcon, UserIcon, RocketIcon } from "lucide-react";
+import Link from "next/link";
+
+import { Dock, DockIcon } from "@/components/magicui/dock";
+import MusicPlayer from "@/components/MusicPlayer";
+import TimeDisplay from "@/components/TimeDisplay";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="min-h-screen bg-white text-black relative overflow-hidden">
+      {/* Background Clouds */}
+      <div className="absolute top-20 right-20">
+        <CloudIcon className="w-32 h-32 text-gray-200" />
+      </div>
+      <div className="absolute bottom-40 left-20">
+        <CloudIcon className="w-24 h-24 text-gray-200" />
+      </div>
+      <div className="absolute top-1/2 right-1/4">
+        <CloudIcon className="w-40 h-40 text-gray-200" />
+      </div>
+      <div className="absolute bottom-20 right-32">
+        <CloudIcon className="w-36 h-36 text-gray-200" />
+      </div>
+      <div className="absolute top-40 left-1/4">
+        <CloudIcon className="w-28 h-28 text-gray-200" />
+      </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      {/* Header */}
+      <div className="flex justify-center w-full pt-6">
+        <div className="w-[80%] border border-black rounded-lg bg-white/50 backdrop-blur-sm">
+          <header className="flex justify-between items-center p-6">
+            <div
+              className="text-2xl font-black uppercase"
+              style={{ fontFamily: "var(--font-dela-gothic)" }}
+            >
+              Saad Arqam
+            </div>
+            <div className="flex items-center gap-2">
+              <span>Pune</span>
+              <TimeDisplay />
+              <CloudIcon className="w-6 h-6" />
+            </div>
+          </header>
+        </div>
+      </div>
+
+      {/* Main Hero Content - Styled like the image */}
+      <main className="grid grid-cols-1 md:grid-cols-5 items-center px-12 md:px-24 lg:px-32 min-h-[80vh] relative">
+        {/* Hero Text - Left-aligned like in the image - Taking 3 columns */}
+        <div className="md:col-span-3">
+          <h1 className="text-7xl md:text-8xl tracking-tighter leading-[0.9] mb-6">
+            A Journey of
+            <br />
+            Curiosity
+          </h1>
+          <div className="japanese-text text-3xl md:text-4xl mb-8">
+            「専門家はい
+            <br />
+            ません。いる
+            <br />
+            のは私たちだ
+            <br />
+            けです。」
+          </div>
+          <p
+            className="text-xl mb-10"
+            style={{ fontFamily: "var(--font-geist-sans)" }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            Design and code{" "}
+            <span className="text-gray-500">from a tropical rich coast</span>
+          </p>
+
+          {/* CTA Buttons */}
+          <div className="flex flex-wrap gap-4">
+            <Link href="/projects">
+              <button className="rounded-button px-8 sm:px-12 py-3 bg-white hover:bg-gray-100 transition-colors border border-gray-300 text-sm sm:text-base">
+                Works
+              </button>
+            </Link>
+            <Link href="/contact">
+              <button className="rounded-button px-8 sm:px-12 py-3 bg-white hover:bg-gray-100 transition-colors border border-gray-300 text-sm sm:text-base">
+                Get in touch
+              </button>
+            </Link>
+          </div>
+        </div>
+
+        {/* Music Player - Taking 2 columns */}
+        <div className="md:col-span-2 flex justify-center items-center mt-16 md:mt-0">
+          <MusicPlayer audioSrc="/audio/cvilni-violin-302859.mp3" />
+        </div>
+
+        {/* Badge in top-right */}
+        <div className="absolute top-12 sm:top-24 right-8 sm:right-24 bg-white rounded-full p-1 border border-black">
+          <div
+            className="rounded-full bg-black text-white p-2 flex items-center justify-center"
+            style={{
+              width: "40px",
+              height: "40px",
+              "@media (min-width: 640px)": { width: "60px", height: "60px" },
+            }}
           >
-            Read our docs
-          </a>
+            <span className="text-base sm:text-lg">★</span>
+          </div>
         </div>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+      {/* Dock at the bottom */}
+      <div className="fixed bottom-4 sm:bottom-10 left-1/2 -translate-x-1/2 z-50">
+        <Dock className="scale-75 sm:scale-100">
+          <Link href="/">
+            <DockIcon>
+              <FlameIcon className="h-5 w-5" />
+            </DockIcon>
+          </Link>
+          <Link href="/about">
+            <DockIcon>
+              <UserIcon className="h-5 w-5" />
+            </DockIcon>
+          </Link>
+          <Link href="/projects">
+            <DockIcon>
+              <RocketIcon className="h-5 w-5" />
+            </DockIcon>
+          </Link>
+          <Link href="/contact">
+            <DockIcon>
+              <CloudIcon className="h-5 w-5" />
+            </DockIcon>
+          </Link>
+        </Dock>
+      </div>
     </div>
   );
 }
