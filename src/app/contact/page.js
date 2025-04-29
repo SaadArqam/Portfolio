@@ -158,7 +158,7 @@ export default function Contact() {
 
                 {/* LinkedIn */}
                 <a
-                  href="https://linkedin.com/in/saadarqam"
+                  href="https://www.linkedin.com/in/avgchillguy/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-4 p-4 border border-black rounded-lg hover:bg-black hover:text-white transition-all duration-300 group"
@@ -169,7 +169,7 @@ export default function Contact() {
                   <div>
                     <h3 className="text-lg font-bold">LinkedIn</h3>
                     <p className="text-sm text-gray-600 group-hover:text-gray-300">
-                      @saadarqam
+                      @SaadArqam
                     </p>
                   </div>
                   <ArrowRightIcon className="w-5 h-5 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -186,7 +186,7 @@ export default function Contact() {
                   <div>
                     <h3 className="text-lg font-bold">Email</h3>
                     <p className="text-sm text-gray-600 group-hover:text-gray-300">
-                      saadarqam@gmail.com
+                      saadarqamrnc@gmail.com
                     </p>
                   </div>
                   <ArrowRightIcon className="w-5 h-5 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -194,7 +194,7 @@ export default function Contact() {
 
                 {/* Instagram */}
                 <a
-                  href="https://instagram.com/saad_arqam"
+                  href="https://instagram.com/saadarq_"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-4 p-4 border border-black rounded-lg hover:bg-black hover:text-white transition-all duration-300 group"
@@ -205,7 +205,7 @@ export default function Contact() {
                   <div>
                     <h3 className="text-lg font-bold">Instagram</h3>
                     <p className="text-sm text-gray-600 group-hover:text-gray-300">
-                      @saad_arqam
+                      @saadarq_
                     </p>
                   </div>
                   <ArrowRightIcon className="w-5 h-5 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
