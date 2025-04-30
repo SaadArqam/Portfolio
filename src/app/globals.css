@@ -342,3 +342,40 @@ h1 {
 }
 
 /* End of Music Player Styles */
+
+/* Custom cursor styles */
+.custom-cursor-outer {
+  pointer-events: none;
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 99999;
+  mix-blend-mode: exclusion;
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+}
+
+.custom-cursor-inner {
+  pointer-events: none;
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  background-color: #fff;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 99999;
+  mix-blend-mode: exclusion;
+  filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.5));
+}
+
+/* Add hover effect for interactive elements */
+a:hover ~ .custom-cursor-outer,
+button:hover ~ .custom-cursor-outer,
+input:hover ~ .custom-cursor-outer,
+textarea:hover ~ .custom-cursor-outer {
+  width: 50px;
+  height: 50px;
+  background-color: rgba(255, 255, 255, 0.3);
+}
