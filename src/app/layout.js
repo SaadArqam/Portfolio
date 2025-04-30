@@ -4,9 +4,8 @@ import "@fontsource/noto-sans-jp";
 import "./globals.css";
 import CustomCursor from "@/components/CustomCursor";
 import InitialLoader from "@/components/InitialLoader";
-import PageTransitionEffect from "@/components/PageTransitionEffect";
-import { MusicProvider } from "@/components/MusicContext";
 import AnimatedLayout from "@/components/AnimatedLayout";
+import { MusicProvider } from "@/components/MusicContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,7 +38,6 @@ export default function RootLayout({ children }) {
         <MusicProvider audioSrc="/audio/podcast.mp3">
           <CustomCursor />
           <InitialLoader />
-          <PageTransitionEffect />
           <AnimatedLayout>{children}</AnimatedLayout>
         </MusicProvider>
       </body>
