@@ -4,23 +4,69 @@ import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 
-const variants = {
-  hidden: { opacity: 0, y: 20 },
+// Smoother page transition variants
+const pageVariants = {
+  hidden: {
+    opacity: 0,
+    y: 15,
+  },
   enter: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.4,
-      ease: [0.33, 1, 0.68, 1],
-      staggerChildren: 0.1,
+      duration: 0.5,
+      ease: [0.22, 1, 0.36, 1],
+      when: "beforeChildren",
     },
   },
   exit: {
     opacity: 0,
-    y: -20,
+    y: -15,
     transition: {
-      duration: 0.3,
-      ease: [0.33, 1, 0.68, 1],
+      duration: 0.4,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
+// Overlay transition variants
+const overlayVariants = {
+  initial: {
+    scaleY: 1,
+  },
+  animate: {
+    scaleY: 0,
+    transition: {
+      duration: 0.9,
+      ease: [0.76, 0, 0.24, 1], // More pronounced easing
+    },
+  },
+  exit: {
+    scaleY: 1,
+    transition: {
+      duration: 0.9,
+      ease: [0.76, 0, 0.24, 1],
+    },
+  },
+};
+
+// Gradient overlay variants
+const gradientVariants = {
+  initial: {
+    opacity: 0.2,
+  },
+  animate: {
+    opacity: 0,
+    transition: {
+      duration: 0.8,
+      ease: "easeOut",
+    },
+  },
+  exit: {
+    opacity: 0.2,
+    transition: {
+      duration: 0.6,
+      ease: "easeIn",
     },
   },
 };
@@ -35,33 +81,31 @@ export default function AnimatedLayout({ children }) {
         initial="hidden"
         animate="enter"
         exit="exit"
-        variants={variants}
+        variants={pageVariants}
         className="min-h-screen"
       >
-        {/* Beautiful overlay effect */}
+        {/* Primary wipe overlay effect */}
         <motion.div
           key={`overlay-${pathname}`}
-          initial={{ scaleY: 1, originY: 0 }}
-          animate={{
-            scaleY: 0,
-            originY: 0,
-            transition: {
-              duration: 0.7,
-              ease: [0.65, 0, 0.35, 1],
-            },
-          }}
-          exit={{
-            scaleY: 0,
-            originY: 1,
-            transition: {
-              duration: 0.7,
-              ease: [0.65, 0, 0.35, 1],
-            },
-          }}
-          className="fixed inset-0 bg-gradient-to-b from-white/10 via-white/30 to-white/10 backdrop-blur-sm pointer-events-none z-[9999]"
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          variants={overlayVariants}
+          className="fixed inset-0 bg-white/10 backdrop-blur-[2px] pointer-events-none z-[9999]"
           style={{ transformOrigin: "top" }}
         />
 
+        {/* Secondary gradient overlay for smoother blending */}
+        <motion.div
+          key={`gradient-${pathname}`}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          variants={gradientVariants}
+          className="fixed inset-0 bg-gradient-to-b from-white/5 via-white/20 to-white/5 pointer-events-none z-[9998]"
+        />
+
+        {/* Content */}
         {children}
       </motion.main>
     </AnimatePresence>
