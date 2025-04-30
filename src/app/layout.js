@@ -6,6 +6,7 @@ import CustomCursor from "@/components/CustomCursor";
 import InitialLoader from "@/components/InitialLoader";
 import PageTransitionEffect from "@/components/PageTransitionEffect";
 import { MusicProvider } from "@/components/MusicContext";
+import AnimatedLayout from "@/components/AnimatedLayout";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,7 +40,7 @@ export default function RootLayout({ children }) {
           <CustomCursor />
           <InitialLoader />
           <PageTransitionEffect />
-          {children}
+          <AnimatedLayout>{children}</AnimatedLayout>
         </MusicProvider>
       </body>
     </html>
