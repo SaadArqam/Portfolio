@@ -4,6 +4,8 @@ import "@fontsource/noto-sans-jp";
 import "./globals.css";
 import CustomCursor from "@/components/CustomCursor";
 import PersistentAudio from "@/components/PersistentAudio";
+import InitialLoader from "@/components/InitialLoader";
+import PageTransitionEffect from "@/components/PageTransitionEffect";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,6 +36,8 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <CustomCursor />
+        <InitialLoader />
+        <PageTransitionEffect />
         {children}
         <PersistentAudio />
       </body>
