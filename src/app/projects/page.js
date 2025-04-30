@@ -13,6 +13,7 @@ import Image from "next/image";
 
 import { Dock, DockIcon } from "@/components/magicui/dock";
 import useScrollRestoration from "@/hooks/useScrollRestoration";
+import MiniMusicPlayer from "@/components/MiniMusicPlayer";
 
 export default function Projects() {
   // Use the hook to fix scrolling issues
@@ -50,9 +51,15 @@ export default function Projects() {
             >
               Projects
             </div>
-            <Link href="/" className="hover:opacity-80 transition-opacity p-2">
-              <FlameIcon className="w-6 h-6" />
-            </Link>
+            <div className="flex items-center gap-2">
+              <MiniMusicPlayer />
+              <Link
+                href="/"
+                className="hover:opacity-80 transition-opacity p-2"
+              >
+                <FlameIcon className="w-6 h-6" />
+              </Link>
+            </div>
           </header>
         </div>
       </div>
@@ -66,11 +73,11 @@ export default function Projects() {
             </h1>
             <div className="hidden md:block">
               <div className="text-right">
-                <p className="japanese-text text-2xl sm:text-3xl mb-2">
+                <p
+                  className="japanese-text text-2xl sm:text-3xl mb-2"
+                  data-meaning="'Creation is the language of the soul.'"
+                >
                   「創造は魂の言語」
-                </p>
-                <p className="italic text-gray-600">
-                  &quot;Creation is the language of the soul.&quot;
                 </p>
               </div>
             </div>
@@ -319,11 +326,11 @@ export default function Projects() {
 
           {/* Mobile Quote - only visible on small screens */}
           <div className="mt-10 md:hidden">
-            <p className="japanese-text text-2xl mb-2 text-center">
+            <p
+              className="japanese-text text-2xl mb-2 text-center"
+              data-meaning="'Creation is the language of the soul.'"
+            >
               「創造は魂の言語」
-            </p>
-            <p className="italic text-gray-600 text-center">
-              &quot;Creation is the language of the soul.&quot;
             </p>
           </div>
         </div>

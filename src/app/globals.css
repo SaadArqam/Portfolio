@@ -136,6 +136,19 @@ h1 {
   font-weight: 900;
   letter-spacing: -0.01em;
   line-height: 1.2;
+  position: relative;
+  display: inline-block;
+}
+
+.japanese-text::after {
+  content: attr(data-meaning);
+  display: block;
+  margin-top: 0.75rem;
+  color: #6b7280;
+  font-size: 0.9rem;
+  font-family: var(--font-geist-sans);
+  font-weight: 400;
+  white-space: nowrap;
 }
 
 .rounded-button {
@@ -501,4 +514,94 @@ textarea:hover ~ .custom-cursor-outer {
 
 .pulse-animation {
   animation: pulse 2s infinite;
+}
+
+/* Mini Music Player Styles */
+.mini-player {
+  position: relative;
+  margin-left: 8px;
+}
+
+.mini-player-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+  padding: 4px;
+}
+
+.mini-player-toggle:hover {
+  transform: scale(1.1);
+}
+
+.mini-player-expanded {
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 8px 10px;
+  width: 120px;
+  backdrop-filter: blur(10px);
+}
+
+.mini-player-content {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mini-player-progress {
+  width: 100%;
+  height: 3px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 1.5px;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+}
+
+.mini-player-progress-filled {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: #000;
+  border-radius: 1.5px;
+}
+
+.mini-player-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mini-player-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 2px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.mini-player-btn:hover {
+  transform: scale(1.1);
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.mini-player-play-btn {
+  background-color: #000;
+  color: white;
+  width: 18px;
+  height: 18px;
+}
+
+.mini-player-play-btn:hover {
+  background-color: #333;
 }

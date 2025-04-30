@@ -54,7 +54,10 @@ export default function Home() {
             <br />
             Curiosity
           </h1>
-          <div className="japanese-text text-3xl md:text-4xl mb-8">
+          <div
+            className="japanese-text text-3xl md:text-4xl mb-8"
+            data-meaning="'There are no experts. There's only us.'"
+          >
             「専門家はい
             <br />
             ません。いる
@@ -88,7 +91,7 @@ export default function Home() {
 
         {/* Music Player - Taking 2 columns */}
         <div className="md:col-span-2 flex justify-center items-center mt-16 md:mt-0">
-          <MusicPlayer audioSrc="/audio/podcast.mp3" />
+          <MusicPlayer />
         </div>
 
         {/* Badge in top-right */}

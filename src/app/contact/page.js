@@ -16,6 +16,7 @@ import Image from "next/image";
 
 import { Dock, DockIcon } from "@/components/magicui/dock";
 import useScrollRestoration from "@/hooks/useScrollRestoration";
+import MiniMusicPlayer from "@/components/MiniMusicPlayer";
 
 export default function Contact() {
   // Use the hook to fix scrolling issues
@@ -53,9 +54,15 @@ export default function Contact() {
             >
               Connect
             </div>
-            <Link href="/" className="hover:opacity-80 transition-opacity p-2">
-              <FlameIcon className="w-6 h-6" />
-            </Link>
+            <div className="flex items-center gap-2">
+              <MiniMusicPlayer />
+              <Link
+                href="/"
+                className="hover:opacity-80 transition-opacity p-2"
+              >
+                <FlameIcon className="w-6 h-6" />
+              </Link>
+            </div>
           </header>
         </div>
       </div>
@@ -130,17 +137,16 @@ export default function Contact() {
 
             {/* Right side - Social links */}
             <div className="space-y-8">
-              <div className="japanese-text text-2xl sm:text-3xl mb-8">
+              <div
+                className="japanese-text text-2xl sm:text-3xl mb-8"
+                data-meaning="'Connections open new doors.'"
+              >
                 「繋がりが
                 <br />
                 新しい扉を
                 <br />
                 開きます。」
               </div>
-
-              <p className="italic text-gray-600 mb-8">
-                &quot;Connections open new doors.&quot;
-              </p>
 
               <div className="space-y-6">
                 {/* GitHub */}

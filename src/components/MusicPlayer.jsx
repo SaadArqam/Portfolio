@@ -1,87 +1,31 @@
 "use client";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { Play, Pause, Volume2, VolumeX } from "lucide-react";
+import { useMusic } from "./MusicContext";
 
-export default function MusicPlayer({ audioSrc }) {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
-  const [duration, setDuration] = useState(0);
-  const [currentTime, setCurrentTime] = useState(0);
+export default function MusicPlayer() {
+  const {
+    isPlaying,
+    isMuted,
+    duration,
+    currentTime,
+    togglePlay,
+    toggleMute,
+    seek,
+    calculateProgress,
+  } = useMusic();
+
   const [isRotating, setIsRotating] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
-
-  const audioRef = useRef(null);
   const progressRef = useRef(null);
 
-  useEffect(() => {
-    const audio = audioRef.current;
-
-    const setAudioData = () => {
-      setDuration(audio.duration);
-    };
-
-    const setAudioTime = () => {
-      setCurrentTime(audio.currentTime);
-    };
-
-    // Set events
-    audio.addEventListener("loadeddata", setAudioData);
-    audio.addEventListener("timeupdate", setAudioTime);
-
-    // Clean up events
-    return () => {
-      audio.removeEventListener("loadeddata", setAudioData);
-      audio.removeEventListener("timeupdate", setAudioTime);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (!audioRef.current) return;
-
-    if (isPlaying) {
-      try {
-        const playPromise = audioRef.current.play();
-
-        if (playPromise !== undefined) {
-          playPromise
-            .then(() => {
-              setIsRotating(true);
-              setHasInteracted(true);
-            })
-            .catch((error) => {
-              console.error("Playback prevented:", error);
-              setIsPlaying(false);
-              setIsRotating(false);
-            });
-        }
-      } catch (error) {
-        console.error("Error during play:", error);
-        setIsPlaying(false);
-        setIsRotating(false);
-      }
-    } else {
-      try {
-        audioRef.current.pause();
-        setIsRotating(false);
-      } catch (error) {
-        console.error("Error during pause:", error);
-      }
-    }
-  }, [isPlaying]);
-
-  useEffect(() => {
-    if (audioRef.current) {
-      audioRef.current.muted = isMuted;
-    }
-  }, [isMuted]);
-
-  const togglePlay = () => {
-    setIsPlaying(!isPlaying);
-  };
-
-  const toggleMute = () => {
-    setIsMuted(!isMuted);
-  };
+  // Update rotation state when play state changes
+  if (isPlaying && !isRotating) {
+    setIsRotating(true);
+    if (!hasInteracted) setHasInteracted(true);
+  } else if (!isPlaying && isRotating) {
+    setIsRotating(false);
+  }
 
   const getFormattedTime = (timeInSeconds) => {
     const minutes = Math.floor(timeInSeconds / 60);
@@ -89,20 +33,15 @@ export default function MusicPlayer({ audioSrc }) {
     return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
   };
 
-  const calculateProgress = () => {
-    if (!duration) return "0%";
-    return `${(currentTime / duration) * 100}%`;
-  };
-
   const handleProgressChange = (e) => {
+    if (!progressRef.current) return;
+
     const progressRect = progressRef.current.getBoundingClientRect();
     const clickPosition = e.clientX - progressRect.left;
     const progressBarWidth = progressRect.width;
     const percentage = clickPosition / progressBarWidth;
 
-    if (audioRef.current) {
-      audioRef.current.currentTime = percentage * duration;
-    }
+    seek(percentage * duration);
   };
 
   return (
@@ -131,7 +70,7 @@ export default function MusicPlayer({ audioSrc }) {
         >
           <div
             className="progress-filled"
-            style={{ width: calculateProgress() }}
+            style={{ width: `${calculateProgress()}%` }}
           ></div>
         </div>
 
@@ -152,8 +91,6 @@ export default function MusicPlayer({ audioSrc }) {
           </button>
         </div>
       </div>
-
-      <audio ref={audioRef} src={audioSrc} preload="metadata"></audio>
     </div>
   );
 }

@@ -5,6 +5,7 @@ import "./globals.css";
 import CustomCursor from "@/components/CustomCursor";
 import InitialLoader from "@/components/InitialLoader";
 import PageTransitionEffect from "@/components/PageTransitionEffect";
+import { MusicProvider } from "@/components/MusicContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,10 +35,12 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <CustomCursor />
-        <InitialLoader />
-        <PageTransitionEffect />
-        {children}
+        <MusicProvider audioSrc="/audio/podcast.mp3">
+          <CustomCursor />
+          <InitialLoader />
+          <PageTransitionEffect />
+          {children}
+        </MusicProvider>
       </body>
     </html>
   );
