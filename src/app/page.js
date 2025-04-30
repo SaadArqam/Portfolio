@@ -93,14 +93,7 @@ export default function Home() {
 
         {/* Badge in top-right */}
         <div className="absolute top-12 sm:top-24 right-8 sm:right-24 bg-white rounded-full p-1 border border-black">
-          <div
-            className="rounded-full bg-black text-white p-2 flex items-center justify-center"
-            style={{
-              width: "40px",
-              height: "40px",
-              "@media (min-width: 640px)": { width: "60px", height: "60px" },
-            }}
-          >
+          <div className="rounded-full bg-black text-white p-2 flex items-center justify-center w-[40px] h-[40px] sm:w-[60px] sm:h-[60px]">
             <span className="text-base sm:text-lg">★</span>
           </div>
         </div>
