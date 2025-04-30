@@ -68,7 +68,7 @@ export default function Home() {
             style={{ fontFamily: "var(--font-geist-sans)" }}
           >
             Design and code{" "}
-            <span className="text-gray-500">from a tropical rich coast</span>
+            <span className="text-gray-500">beneath midnight thoughts</span>
           </p>
 
           {/* CTA Buttons */}

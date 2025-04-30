@@ -15,11 +15,29 @@ const PersistentAudio = () => {
   const [audioElement, setAudioElement] = useState(null);
   const [showControls, setShowControls] = useState(false);
   const [userInteractionNeeded, setUserInteractionNeeded] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   const audioRef = useRef(null);
   const pathname = usePathname();
   const isHomePage = pathname === "/";
   const prevPathRef = useRef(pathname);
+
+  // Handle responsive design
+  useEffect(() => {
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+
+    // Initial check
+    checkIsMobile();
+
+    // Add resize listener
+    window.addEventListener("resize", checkIsMobile);
+
+    return () => {
+      window.removeEventListener("resize", checkIsMobile);
+    };
+  }, []);
 
   // Setup audio element and global user interaction detection
   useEffect(() => {
@@ -164,21 +182,73 @@ const PersistentAudio = () => {
   // Don't render anything on the homepage or if audio isn't available
   if (!isVisible || isHomePage) return null;
 
+  // Styles for components
+  const containerStyles = {
+    position: "fixed",
+    bottom: "1rem",
+    right: "1rem",
+    zIndex: 50,
+  };
+
+  const musicPlayerStyles = {
+    backgroundColor: "rgba(0, 0, 0, 0.6)",
+    borderRadius: showControls ? "1.5rem" : "50%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: showControls ? "column" : "row",
+    width: showControls ? "220px" : "48px",
+    height: showControls ? "auto" : "48px",
+    transition: "all 0.3s ease",
+    backdropFilter: "blur(5px)",
+    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+    padding: showControls ? "12px" : "0",
+  };
+
+  const buttonStyles = {
+    width: "48px",
+    height: "48px",
+    borderRadius: "50%",
+    backgroundColor: "transparent",
+    border: "none",
+    color: "white",
+    cursor: "pointer",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    transition: "transform 0.2s ease",
+    animation: userInteractionNeeded ? "pulse 2s infinite" : "none",
+  };
+
+  const controlsStyles = {
+    display: "flex",
+    flexDirection: "column",
+    width: "100%",
+    gap: "8px",
+    marginTop: "10px",
+  };
+
+  const muteButtonStyles = {
+    background: "none",
+    border: "none",
+    color: "white",
+    cursor: "pointer",
+    padding: "4px",
+    marginTop: "4px",
+    borderRadius: "4px",
+    transition: "background-color 0.2s ease",
+    alignSelf: "flex-end",
+  };
+
   return (
     <div
-      className="fixed bottom-4 right-4 z-50"
+      style={containerStyles}
       onMouseEnter={() => setShowControls(true)}
       onMouseLeave={() => setShowControls(false)}
     >
-      <div
-        className={`music-player-floating ${
-          showControls ? "music-player-expanded" : ""
-        }`}
-      >
+      <div style={musicPlayerStyles}>
         <button
-          className={`music-toggle-btn ${
-            userInteractionNeeded ? "pulse-animation" : ""
-          }`}
+          style={buttonStyles}
           onClick={togglePlay}
           aria-label={isPlaying ? "Pause music" : "Play music"}
           title={
@@ -197,9 +267,9 @@ const PersistentAudio = () => {
         </button>
 
         {showControls && (
-          <div className="music-controls-floating">
+          <div style={controlsStyles}>
             <button
-              className="mute-btn-floating"
+              style={muteButtonStyles}
               onClick={toggleMute}
               aria-label={audioRef.current?.muted ? "Unmute" : "Mute"}
             >
