@@ -12,42 +12,19 @@ if (typeof window !== "undefined") {
 const PersistentAudio = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const [audioElement, setAudioElement] = useState(null);
   const [showControls, setShowControls] = useState(false);
   const [userInteractionNeeded, setUserInteractionNeeded] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
 
   const audioRef = useRef(null);
   const pathname = usePathname();
   const isHomePage = pathname === "/";
   const prevPathRef = useRef(pathname);
 
-  // Handle responsive design
-  useEffect(() => {
-    const checkIsMobile = () => {
-      setIsMobile(window.innerWidth < 640);
-    };
-
-    // Initial check
-    checkIsMobile();
-
-    // Add resize listener
-    window.addEventListener("resize", checkIsMobile);
-
-    return () => {
-      window.removeEventListener("resize", checkIsMobile);
-    };
-  }, []);
-
-  // Setup audio element and global user interaction detection
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    // Setup user interaction detection
     const markUserInteraction = () => {
       window.userHasInteracted = true;
-
-      // Try to play audio if we were waiting for user interaction
       if (audioRef.current && userInteractionNeeded && !isHomePage) {
         audioRef.current
           .play()
@@ -56,21 +33,18 @@ const PersistentAudio = () => {
             setIsPlaying(true);
             localStorage.setItem("musicPlaying", "true");
           })
-          .catch((e) => console.error("Still could not play audio:", e));
+          .catch((e) => console.error("Audio playback error:", e));
       }
 
-      // Remove listeners after first interaction
       document.removeEventListener("click", markUserInteraction);
       document.removeEventListener("touchstart", markUserInteraction);
       document.removeEventListener("keydown", markUserInteraction);
     };
 
-    // Add listeners for user interaction
     document.addEventListener("click", markUserInteraction);
     document.addEventListener("touchstart", markUserInteraction);
     document.addEventListener("keydown", markUserInteraction);
 
-    // Setup audio element if it doesn't exist yet
     if (!window.persistentAudio) {
       const audio = new Audio("/music/background-music.mp3");
       audio.loop = true;
@@ -78,7 +52,6 @@ const PersistentAudio = () => {
       window.persistentAudio = audio;
       audioRef.current = audio;
 
-      // Add event listeners
       audio.addEventListener("play", () => {
         setIsPlaying(true);
         localStorage.setItem("musicPlaying", "true");
@@ -91,35 +64,22 @@ const PersistentAudio = () => {
 
       audio.addEventListener("canplaythrough", () => {
         setIsVisible(true);
-
-        // Try to play if we're not on the homepage and should be playing
         if (
           !isHomePage &&
           localStorage.getItem("musicPlaying") !== "false" &&
           window.userHasInteracted
         ) {
-          audio.play().catch((error) => {
-            console.warn("Autoplay prevented, need user interaction:", error);
-            setUserInteractionNeeded(true);
-          });
+          audio.play().catch(() => setUserInteractionNeeded(true));
         }
       });
 
-      audio.addEventListener("error", (e) => {
-        console.error("Audio error:", e);
-        setIsVisible(false);
-      });
-
-      setAudioElement(audio);
+      audio.addEventListener("error", () => setIsVisible(false));
     } else {
-      // If audio already exists, just reference it
       audioRef.current = window.persistentAudio;
-      setAudioElement(window.persistentAudio);
       setIsPlaying(!window.persistentAudio.paused);
       setIsVisible(true);
     }
 
-    // Cleanup function
     return () => {
       document.removeEventListener("click", markUserInteraction);
       document.removeEventListener("touchstart", markUserInteraction);
@@ -127,31 +87,23 @@ const PersistentAudio = () => {
     };
   }, [isHomePage, userInteractionNeeded]);
 
-  // Handle path changes
   useEffect(() => {
     if (!audioRef.current) return;
 
-    // If navigating to homepage, pause the music
     if (isHomePage) {
       audioRef.current.pause();
-    }
-    // If coming from homepage to another page, and music was playing before, resume it
-    else if (
+    } else if (
       prevPathRef.current === "/" &&
       pathname !== "/" &&
       localStorage.getItem("musicPlaying") !== "false"
     ) {
       if (window.userHasInteracted) {
-        audioRef.current.play().catch((error) => {
-          console.warn("Play prevented, need user interaction:", error);
-          setUserInteractionNeeded(true);
-        });
+        audioRef.current.play().catch(() => setUserInteractionNeeded(true));
       } else {
         setUserInteractionNeeded(true);
       }
     }
 
-    // Update the previous path
     prevPathRef.current = pathname;
   }, [pathname, isHomePage]);
 
@@ -161,94 +113,83 @@ const PersistentAudio = () => {
     if (isPlaying) {
       audioRef.current.pause();
     } else {
-      audioRef.current.play().catch((error) => {
-        console.warn("Play prevented, need user interaction:", error);
-        setUserInteractionNeeded(true);
-      });
+      audioRef.current.play().catch(() => setUserInteractionNeeded(true));
     }
-
-    // Mark that user has interacted with the page
     window.userHasInteracted = true;
   };
 
   const toggleMute = () => {
     if (!audioRef.current) return;
-
     audioRef.current.muted = !audioRef.current.muted;
-    // Force update to reflect mute state change
-    setIsPlaying((prev) => prev); // This triggers a re-render without changing state
+    setIsPlaying((prev) => prev);
   };
 
-  // Don't render anything on the homepage or if audio isn't available
   if (!isVisible || isHomePage) return null;
 
-  // Styles for components
-  const containerStyles = {
-    position: "fixed",
-    bottom: "1rem",
-    right: "1rem",
-    zIndex: 50,
-  };
-
-  const musicPlayerStyles = {
-    backgroundColor: "rgba(0, 0, 0, 0.6)",
-    borderRadius: showControls ? "1.5rem" : "50%",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    flexDirection: showControls ? "column" : "row",
-    width: showControls ? "220px" : "48px",
-    height: showControls ? "auto" : "48px",
-    transition: "all 0.3s ease",
-    backdropFilter: "blur(5px)",
-    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
-    padding: showControls ? "12px" : "0",
-  };
-
-  const buttonStyles = {
-    width: "48px",
-    height: "48px",
-    borderRadius: "50%",
-    backgroundColor: "transparent",
-    border: "none",
-    color: "white",
-    cursor: "pointer",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    transition: "transform 0.2s ease",
-    animation: userInteractionNeeded ? "pulse 2s infinite" : "none",
-  };
-
-  const controlsStyles = {
-    display: "flex",
-    flexDirection: "column",
-    width: "100%",
-    gap: "8px",
-    marginTop: "10px",
-  };
-
-  const muteButtonStyles = {
-    background: "none",
-    border: "none",
-    color: "white",
-    cursor: "pointer",
-    padding: "4px",
-    marginTop: "4px",
-    borderRadius: "4px",
-    transition: "background-color 0.2s ease",
-    alignSelf: "flex-end",
+  const styles = {
+    container: {
+      position: "fixed",
+      bottom: "1rem",
+      right: "1rem",
+      zIndex: 50,
+    },
+    player: {
+      backgroundColor: "rgba(0, 0, 0, 0.6)",
+      borderRadius: showControls ? "1.5rem" : "50%",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      flexDirection: showControls ? "column" : "row",
+      width: showControls ? "220px" : "48px",
+      height: showControls ? "auto" : "48px",
+      transition: "all 0.3s ease",
+      backdropFilter: "blur(5px)",
+      boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+      padding: showControls ? "12px" : "0",
+    },
+    button: {
+      width: "48px",
+      height: "48px",
+      borderRadius: "50%",
+      backgroundColor: "transparent",
+      border: "none",
+      color: "white",
+      cursor: "pointer",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      transition: "transform 0.2s ease",
+      animation: userInteractionNeeded ? "pulse 2s infinite" : "none",
+    },
+    controls: {
+      display: "flex",
+      flexDirection: "column",
+      width: "100%",
+      gap: "8px",
+      marginTop: "10px",
+    },
+    muteButton: {
+      background: "none",
+      border: "none",
+      color: "white",
+      cursor: "pointer",
+      padding: "4px",
+      marginTop: "4px",
+      borderRadius: "4px",
+      transition: "background-color 0.2s ease",
+      alignSelf: "flex-end",
+    },
   };
 
   return (
     <div
-      style={containerStyles}
+      style={styles.container}
       onMouseEnter={() => setShowControls(true)}
       onMouseLeave={() => setShowControls(false)}
     >
-      <div style={musicPlayerStyles}>
+      <div style={styles.player}>
         <button
-          style={buttonStyles}
+          style={styles.button}
           onClick={togglePlay}
           aria-label={isPlaying ? "Pause music" : "Play music"}
           title={
@@ -267,9 +208,9 @@ const PersistentAudio = () => {
         </button>
 
         {showControls && (
-          <div style={controlsStyles}>
+          <div style={styles.controls}>
             <button
-              style={muteButtonStyles}
+              style={styles.muteButton}
               onClick={toggleMute}
               aria-label={audioRef.current?.muted ? "Unmute" : "Mute"}
             >

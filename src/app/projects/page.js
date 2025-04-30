@@ -2,7 +2,6 @@ import {
   CloudIcon,
   FlameIcon,
   UserIcon,
-  CodeIcon,
   RocketIcon,
   GithubIcon,
   ExternalLinkIcon,
@@ -53,276 +52,248 @@ export default function Projects() {
       </div>
 
       {/* Main Content */}
-      <main className="grid grid-cols-1 px-6 sm:px-12 md:px-24 lg:px-32 min-h-[80vh] relative py-10 sm:py-16">
-        <div className="mx-auto w-full max-w-6xl">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl tracking-tighter leading-[0.9] mb-6 sm:mb-10">
+      <main className="px-4 sm:px-8 md:px-16 lg:px-24 min-h-[80vh] relative py-10">
+        <div className="max-w-7xl mx-auto">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-12">
             Creations
           </h1>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
-            {/* Project Card 1 */}
-            <div className="group border border-black rounded-lg overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-2 relative bg-white">
-              <div className="absolute top-3 right-3 z-20 bg-black text-white rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <RocketIcon className="w-4 h-4" />
-              </div>
-              <div className="h-52 bg-gray-100 relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/20 z-10"></div>
-                <Image
-                  src="/img/project1.jpg"
-                  alt="Project preview"
-                  fill
-                  className="object-cover transform group-hover:scale-110 transition-transform duration-700"
-                  priority
-                />
-              </div>
-              <div className="p-6 border-t border-gray-100">
-                <h3 className="text-xl font-bold mb-2 group-hover:text-gray-800 transition-colors">
-                  GALACTUS
-                </h3>
-                <p className="text-gray-600 mb-6">
-                  Galactus – A sleek web experience built for immersive comic
-                  exploration.
-                </p>
-                <div className="flex justify-between items-center">
-                  <a
-                    href="https://github.com/SaadArqam/GALACTUS"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 border border-black rounded-md hover:bg-black hover:text-white transition-all duration-300"
-                  >
-                    <GithubIcon className="w-4 h-4" />
-                    <span>GitHub</span>
-                  </a>
-                  <a
-                    href="https://galactus-three.vercel.app/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 bg-black text-white rounded-md hover:bg-gray-800 transition-colors"
-                  >
-                    <ExternalLinkIcon className="w-4 h-4" />
-                    <span>Live Demo</span>
-                  </a>
+          {/* Projects Grid Layout */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {/* Row 1 */}
+            <div className="md:col-span-2 aspect-[2/1] relative group overflow-hidden rounded-xl">
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
+              <Image
+                src="/img/project1.jpg"
+                alt="GALACTUS"
+                fill
+                className="object-cover"
+                priority
+              />
+              <div className="absolute bottom-0 left-0 right-0 p-5 z-20">
+                <div className="bg-white/90 backdrop-blur-sm rounded-lg p-4 shadow-lg transform translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                  <h3 className="text-xl font-bold mb-2">GALACTUS</h3>
+                  <p className="text-sm text-gray-700 mb-3">
+                    A sleek web experience for immersive comic exploration.
+                  </p>
+                  <div className="flex justify-between">
+                    <a
+                      href="https://github.com/SaadArqam/GALACTUS"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1 text-sm hover:text-gray-700"
+                    >
+                      <GithubIcon className="w-4 h-4" />
+                      <span>GitHub</span>
+                    </a>
+                    <a
+                      href="https://galactus-three.vercel.app/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1 text-sm hover:text-gray-700"
+                    >
+                      <ExternalLinkIcon className="w-4 h-4" />
+                      <span>Live Demo</span>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Project Card 2 */}
-            <div className="group border border-black rounded-lg overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-2 relative bg-white">
-              <div className="absolute top-3 right-3 z-20 bg-black text-white rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <CodeIcon className="w-4 h-4" />
-              </div>
-              <div className="h-52 bg-gray-100 relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/20 z-10"></div>
-                <Image
-                  src="/img/project2.jpg"
-                  alt="Project preview"
-                  fill
-                  className="object-cover transform group-hover:scale-110 transition-transform duration-700"
-                />
-              </div>
-              <div className="p-6 border-t border-gray-100">
-                <h3 className="text-xl font-bold mb-2 group-hover:text-gray-800 transition-colors">
-                  TEKRON
-                </h3>
-                <p className="text-gray-600 mb-6">Where future tech unfolds.</p>
-                <div className="flex justify-between items-center">
-                  <a
-                    href="https://github.com/SaadArqam/TEKRON"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 border border-black rounded-md hover:bg-black hover:text-white transition-all duration-300"
-                  >
-                    <GithubIcon className="w-4 h-4" />
-                    <span>GitHub</span>
-                  </a>
-                  <a
-                    href="https://tekronfest.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 bg-black text-white rounded-md hover:bg-gray-800 transition-colors"
-                  >
-                    <ExternalLinkIcon className="w-4 h-4" />
-                    <span>Live Demo</span>
-                  </a>
+            <div className="aspect-square relative group overflow-hidden rounded-xl">
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
+              <Image
+                src="/img/project2.jpg"
+                alt="TEKRON"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute bottom-0 left-0 right-0 p-5 z-20">
+                <div className="bg-white/90 backdrop-blur-sm rounded-lg p-4 shadow-lg transform translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                  <h3 className="text-xl font-bold mb-2">TEKRON</h3>
+                  <p className="text-sm text-gray-700 mb-3">
+                    Where future tech unfolds.
+                  </p>
+                  <div className="flex justify-between">
+                    <a
+                      href="https://github.com/SaadArqam/TEKRON"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1 text-sm hover:text-gray-700"
+                    >
+                      <GithubIcon className="w-4 h-4" />
+                      <span>GitHub</span>
+                    </a>
+                    <a
+                      href="https://tekronfest.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1 text-sm hover:text-gray-700"
+                    >
+                      <ExternalLinkIcon className="w-4 h-4" />
+                      <span>Live Demo</span>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Project Card 3 */}
-            <div className="group border border-black rounded-lg overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-2 relative bg-white">
-              <div className="absolute top-3 right-3 z-20 bg-black text-white rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <CloudIcon className="w-4 h-4" />
-              </div>
-              <div className="h-52 bg-gray-100 relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/20 z-10"></div>
-                <Image
-                  src="/img/project3.jpg"
-                  alt="Project preview"
-                  fill
-                  className="object-cover transform group-hover:scale-110 transition-transform duration-700"
-                />
-              </div>
-              <div className="p-6 border-t border-gray-100">
-                <h3 className="text-xl font-bold mb-2 group-hover:text-gray-800 transition-colors">
-                  SHARK&apos;S SPHERE
-                </h3>
-                <p className="text-gray-600 mb-6">
-                  A sleek web platform empowering young visionaries and future
-                  entrepreneurs through innovation and community.
-                </p>
-                <div className="flex justify-between items-center">
-                  <a
-                    href="https://github.com/SaadArqam/E-Cell-2.0"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 border border-black rounded-md hover:bg-black hover:text-white transition-all duration-300"
-                  >
-                    <GithubIcon className="w-4 h-4" />
-                    <span>GitHub</span>
-                  </a>
-                  <a
-                    href="https://e-cell20.vercel.app/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 bg-black text-white rounded-md hover:bg-gray-800 transition-colors"
-                  >
-                    <ExternalLinkIcon className="w-4 h-4" />
-                    <span>Live Demo</span>
-                  </a>
+            {/* Row 2 */}
+            <div className="aspect-square relative group overflow-hidden rounded-xl">
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
+              <Image
+                src="/img/project4.jpg"
+                alt="WHO'S THAT POKEMON?"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute bottom-0 left-0 right-0 p-5 z-20">
+                <div className="bg-white/90 backdrop-blur-sm rounded-lg p-4 shadow-lg transform translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                  <h3 className="text-xl font-bold mb-2">
+                    WHO&apos;S THAT POKEMON?
+                  </h3>
+                  <p className="text-sm text-gray-700 mb-3">
+                    A fun, modern web game with a clean UI for Pokémon
+                    enthusiasts.
+                  </p>
+                  <div className="flex justify-between">
+                    <a
+                      href="https://github.com/SaadArqam/Whos-That-Pokemon"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1 text-sm hover:text-gray-700"
+                    >
+                      <GithubIcon className="w-4 h-4" />
+                      <span>GitHub</span>
+                    </a>
+                    <a
+                      href="https://whos-that-pokemon-zeta.vercel.app/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1 text-sm hover:text-gray-700"
+                    >
+                      <ExternalLinkIcon className="w-4 h-4" />
+                      <span>Live Demo</span>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Project Card 4 */}
-            <div className="group border border-black rounded-lg overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-2 relative bg-white">
-              <div className="absolute top-3 right-3 z-20 bg-black text-white rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <RocketIcon className="w-4 h-4" />
-              </div>
-              <div className="h-52 bg-gray-100 relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/20 z-10"></div>
-                <Image
-                  src="/img/project4.jpg"
-                  alt="Project preview"
-                  fill
-                  className="object-cover transform group-hover:scale-110 transition-transform duration-700"
-                />
-              </div>
-              <div className="p-6 border-t border-gray-100">
-                <h3 className="text-xl font-bold mb-2 group-hover:text-gray-800 transition-colors">
-                  WHO&apos;S THAT POKEMON?
-                </h3>
-                <p className="text-gray-600 mb-6">
-                  A fun, modern web game with a clean UI and interactive UX for
-                  every Pokémon enthusiast.
-                </p>
-                <div className="flex justify-between items-center">
-                  <a
-                    href="https://github.com/SaadArqam/Whos-That-Pokemon"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 border border-black rounded-md hover:bg-black hover:text-white transition-all duration-300"
-                  >
-                    <GithubIcon className="w-4 h-4" />
-                    <span>GitHub</span>
-                  </a>
-                  <a
-                    href="https://whos-that-pokemon-zeta.vercel.app/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 bg-black text-white rounded-md hover:bg-gray-800 transition-colors"
-                  >
-                    <ExternalLinkIcon className="w-4 h-4" />
-                    <span>Live Demo</span>
-                  </a>
+            <div className="md:col-span-2 aspect-[2/1] relative group overflow-hidden rounded-xl">
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
+              <Image
+                src="/img/project3.jpg"
+                alt="SHARK'S SPHERE"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute bottom-0 left-0 right-0 p-5 z-20">
+                <div className="bg-white/90 backdrop-blur-sm rounded-lg p-4 shadow-lg transform translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                  <h3 className="text-xl font-bold mb-2">
+                    SHARK&apos;S SPHERE
+                  </h3>
+                  <p className="text-sm text-gray-700 mb-3">
+                    A web platform for young visionaries and entrepreneurs.
+                  </p>
+                  <div className="flex justify-between">
+                    <a
+                      href="https://github.com/SaadArqam/E-Cell-2.0"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1 text-sm hover:text-gray-700"
+                    >
+                      <GithubIcon className="w-4 h-4" />
+                      <span>GitHub</span>
+                    </a>
+                    <a
+                      href="https://e-cell20.vercel.app/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1 text-sm hover:text-gray-700"
+                    >
+                      <ExternalLinkIcon className="w-4 h-4" />
+                      <span>Live Demo</span>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Project Card 5 */}
-            <div className="group border border-black rounded-lg overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-2 relative bg-white">
-              <div className="absolute top-3 right-3 z-20 bg-black text-white rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <CodeIcon className="w-4 h-4" />
-              </div>
-              <div className="h-52 bg-gray-100 relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/20 z-10"></div>
-                <Image
-                  src="/img/project5.jpg"
-                  alt="Project preview"
-                  fill
-                  className="object-cover transform group-hover:scale-110 transition-transform duration-700"
-                />
-              </div>
-              <div className="p-6 border-t border-gray-100">
-                <h3 className="text-xl font-bold mb-2 group-hover:text-gray-800 transition-colors">
-                  EMO
-                </h3>
-                <p className="text-gray-600 mb-6">
-                  A minimal yet expressive platform that bridges emotion and
-                  interaction with clean design and thoughtful UX.
-                </p>
-                <div className="flex justify-between items-center">
-                  <a
-                    href="https://github.com/SaadArqam/emo"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 border border-black rounded-md hover:bg-black hover:text-white transition-all duration-300"
-                  >
-                    <GithubIcon className="w-4 h-4" />
-                    <span>GitHub</span>
-                  </a>
-                  <a
-                    href="https://emo-lime.vercel.app/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 bg-black text-white rounded-md hover:bg-gray-800 transition-colors"
-                  >
-                    <ExternalLinkIcon className="w-4 h-4" />
-                    <span>Live Demo</span>
-                  </a>
+            {/* Row 3 */}
+            <div className="aspect-square relative group overflow-hidden rounded-xl">
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
+              <Image
+                src="/img/project6.jpg"
+                alt="COMMING SOON"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute bottom-0 left-0 right-0 p-5 z-20">
+                <div className="bg-white/90 backdrop-blur-sm rounded-lg p-4 shadow-lg transform translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                  <h3 className="text-xl font-bold mb-2">Comming Soon</h3>
+                  <p className="text-sm text-gray-700 mb-3">
+                    This project is underway.
+                  </p>
+                  <div className="flex justify-between">
+                    <a
+                      href="#"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1 text-sm hover:text-gray-700"
+                    >
+                      <GithubIcon className="w-4 h-4" />
+                      <span>GitHub</span>
+                    </a>
+                    <a
+                      href="#"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1 text-sm hover:text-gray-700"
+                    >
+                      <ExternalLinkIcon className="w-4 h-4" />
+                      <span>Live Demo</span>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Project Card 6 */}
-            <div className="group border border-black rounded-lg overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-2 relative bg-white">
-              <div className="absolute top-3 right-3 z-20 bg-black text-white rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <CloudIcon className="w-4 h-4" />
-              </div>
-              <div className="h-52 bg-gray-100 relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/20 z-10"></div>
-                <Image
-                  src="/img/project6.jpg"
-                  alt="Project preview"
-                  fill
-                  className="object-cover transform group-hover:scale-110 transition-transform duration-700"
-                />
-              </div>
-              <div className="p-6 border-t border-gray-100">
-                <h3 className="text-xl font-bold mb-2 group-hover:text-gray-800 transition-colors">
-                  Comming Soon
-                </h3>
-                <p className="text-gray-600 mb-6">
-                  This Project is Under Way
-                </p>
-                <div className="flex justify-between items-center">
-                  <a
-                    href="https://github.com/username/ai-integration"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 border border-black rounded-md hover:bg-black hover:text-white transition-all duration-300"
-                  >
-                    <GithubIcon className="w-4 h-4" />
-                    <span>GitHub</span>
-                  </a>
-                  <a
-                    href="https://ai-integration-demo.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 bg-black text-white rounded-md hover:bg-gray-800 transition-colors"
-                  >
-                    <ExternalLinkIcon className="w-4 h-4" />
-                    <span>Live Demo</span>
-                  </a>
+            <div className="md:col-span-2 aspect-[2/1] relative group overflow-hidden rounded-xl">
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
+              <Image
+                src="/img/project5.jpg"
+                alt="EMO"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute bottom-0 left-0 right-0 p-5 z-20">
+                <div className="bg-white/90 backdrop-blur-sm rounded-lg p-4 shadow-lg transform translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                  <h3 className="text-xl font-bold mb-2">EMO</h3>
+                  <p className="text-sm text-gray-700 mb-3">
+                    A minimal yet expressive platform that bridges emotion and
+                    interaction with clean design and thoughtful UX
+                  </p>
+                  <div className="flex justify-between">
+                    <a
+                      href="https://github.com/SaadArqam/emo"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1 text-sm hover:text-gray-700"
+                    >
+                      <GithubIcon className="w-4 h-4" />
+                      <span>GitHub</span>
+                    </a>
+                    <a
+                      href="https://emo-lime.vercel.app/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1 text-sm hover:text-gray-700"
+                    >
+                      <ExternalLinkIcon className="w-4 h-4" />
+                      <span>Live Demo</span>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -334,23 +305,23 @@ export default function Projects() {
       <div className="fixed bottom-4 sm:bottom-10 left-1/2 -translate-x-1/2 z-50">
         <Dock className="scale-75 sm:scale-100">
           <Link href="/">
-            <DockIcon>
-              <FlameIcon className="h-5 w-5" />
+            <DockIcon className="bg-white/90 shadow-md">
+              <FlameIcon className="h-5 w-5 text-black" />
             </DockIcon>
           </Link>
           <Link href="/about">
-            <DockIcon>
-              <UserIcon className="h-5 w-5" />
+            <DockIcon className="bg-white/90 shadow-md">
+              <UserIcon className="h-5 w-5 text-black" />
             </DockIcon>
           </Link>
           <Link href="/projects">
-            <DockIcon>
-              <RocketIcon className="h-5 w-5" />
+            <DockIcon className="bg-white/90 shadow-md">
+              <RocketIcon className="h-5 w-5 text-black" />
             </DockIcon>
           </Link>
           <Link href="/contact">
-            <DockIcon>
-              <CloudIcon className="h-5 w-5" />
+            <DockIcon className="bg-white/90 shadow-md">
+              <CloudIcon className="h-5 w-5 text-black" />
             </DockIcon>
           </Link>
         </Dock>

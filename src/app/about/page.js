@@ -74,9 +74,9 @@ export default function About() {
                 </p>
 
                 <p>
-                  When I&apos;m not coding, you might find me exploring new
-                  design trends, experimenting with music, or enjoying the
-                  outdoors.
+                  When I&apos;m not coding, you might find me watching movies,
+                  bingeing a good series, or just unwinding with some screen
+                  time.
                 </p>
 
                 <div className="japanese-text text-xl sm:text-2xl md:text-3xl my-8 sm:my-10">
