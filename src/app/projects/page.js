@@ -54,9 +54,21 @@ export default function Projects() {
       {/* Main Content */}
       <main className="px-4 sm:px-8 md:px-16 lg:px-24 min-h-[80vh] relative py-10">
         <div className="max-w-7xl mx-auto">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-12">
-            Creations
-          </h1>
+          <div className="flex justify-between items-start mb-12">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold">
+              Creations
+            </h1>
+            <div className="hidden md:block">
+              <div className="text-right">
+                <p className="japanese-text text-2xl sm:text-3xl mb-2">
+                  「創造は魂の言語」
+                </p>
+                <p className="italic text-gray-600">
+                  &quot;Creation is the language of the soul.&quot;
+                </p>
+              </div>
+            </div>
+          </div>
 
           {/* Projects Grid Layout */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
@@ -297,6 +309,16 @@ export default function Projects() {
                 </div>
               </div>
             </div>
+          </div>
+
+          {/* Mobile Quote - only visible on small screens */}
+          <div className="mt-10 md:hidden">
+            <p className="japanese-text text-2xl mb-2 text-center">
+              「創造は魂の言語」
+            </p>
+            <p className="italic text-gray-600 text-center">
+              &quot;Creation is the language of the soul.&quot;
+            </p>
           </div>
         </div>
       </main>
