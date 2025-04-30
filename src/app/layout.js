@@ -3,6 +3,7 @@ import "@fontsource/dela-gothic-one";
 import "@fontsource/noto-sans-jp";
 import "./globals.css";
 import CustomCursor from "@/components/CustomCursor";
+import PersistentAudio from "@/components/PersistentAudio";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,6 +35,7 @@ export default function RootLayout({ children }) {
       >
         <CustomCursor />
         {children}
+        <PersistentAudio />
       </body>
     </html>
   );

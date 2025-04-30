@@ -88,7 +88,7 @@ export default function Home() {
 
         {/* Music Player - Taking 2 columns */}
         <div className="md:col-span-2 flex justify-center items-center mt-16 md:mt-0">
-          <MusicPlayer audioSrc="/audio/cvilni-violin-302859.mp3" />
+          <MusicPlayer audioSrc="/audio/podcast.mp3" />
         </div>
 
         {/* Badge in top-right */}
