@@ -1,3 +1,5 @@
+"use client";
+
 import {
   CloudIcon,
   FlameIcon,
@@ -9,8 +11,12 @@ import Link from "next/link";
 import Image from "next/image";
 
 import { Dock, DockIcon } from "@/components/magicui/dock";
+import useScrollRestoration from "@/hooks/useScrollRestoration";
 
 export default function About() {
+  // Use the hook to fix scrolling issues
+  useScrollRestoration();
+
   return (
     <div className="min-h-screen bg-white text-black relative overflow-hidden">
       {/* Background Clouds */}
