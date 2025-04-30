@@ -117,10 +117,22 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    cursor: none !important;
   }
   body {
     @apply bg-background text-foreground;
+    cursor: none !important;
   }
+}
+
+/* Hide default cursor on interactive elements but maintain functionality */
+a, button, input, textarea, select, [role="button"], label, [tabindex]:not([tabindex="-1"]) {
+  cursor: none !important;
+}
+
+/* Ensure cursor remains hidden on hover states */
+*:hover {
+  cursor: none !important;
 }
 
 /* Custom typography for the hero section */
@@ -148,7 +160,20 @@ h1 {
   font-size: 0.9rem;
   font-family: var(--font-geist-sans);
   font-weight: 400;
-  white-space: nowrap;
+  white-space: normal;
+  max-width: 100%;
+}
+
+@media (max-width: 640px) {
+  .japanese-text {
+    font-size: 1.5rem !important;
+    line-height: 1.3;
+  }
+  
+  .japanese-text::after {
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+  }
 }
 
 .rounded-button {
@@ -543,7 +568,7 @@ textarea:hover ~ .custom-cursor-outer {
   border-radius: 20px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   padding: 8px 10px;
-  width: 120px;
+  width: 180px;
   backdrop-filter: blur(10px);
 }
 
@@ -604,4 +629,285 @@ textarea:hover ~ .custom-cursor-outer {
 
 .mini-player-play-btn:hover {
   background-color: #333;
+}
+
+/* Progress Wave Animation for Music Player */
+.progress-wave-container {
+  width: 100%;
+  height: 24px;
+  background-color: rgba(0, 0, 0, 0.03);
+  border-radius: 12px;
+  cursor: pointer;
+  margin: 8px 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-wave-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.05);
+  z-index: 0;
+  border-radius: 12px 0 0 12px;
+}
+
+.progress-wave {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  padding: 0 4px;
+  position: relative;
+  z-index: 1;
+}
+
+.wave-element {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.wave-dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background-color: #000;
+  opacity: 0.7;
+  margin: 1px 0;
+}
+
+/* Mini Player Wave Animation */
+.mini-wave-container {
+  width: 100%;
+  height: 16px;
+  background-color: rgba(0, 0, 0, 0.03);
+  border-radius: 8px;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+}
+
+.mini-wave-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.05);
+  z-index: 0;
+  border-radius: 8px 0 0 8px;
+}
+
+.mini-wave {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  padding: 0 3px;
+  position: relative;
+  z-index: 1;
+}
+
+.mini-wave-dot {
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background-color: #000;
+  opacity: 0.7;
+  margin: 1px 0;
+}
+
+/* Dot animations */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+}
+
+.wave-animate {
+  animation: pulse 2s infinite;
+}
+
+.wave-animate-delay-1 {
+  animation-delay: 0.2s;
+}
+
+.wave-animate-delay-2 {
+  animation-delay: 0.4s;
+}
+
+.wave-animate-delay-3 {
+  animation-delay: 0.6s;
+}
+
+.wave-animate-delay-4 {
+  animation-delay: 0.8s;
+}
+
+.wave-animate-delay-5 {
+  animation-delay: 1.0s;
+}
+
+/* Spotify-style Audio Visualizer */
+.spotify-visualizer {
+  width: 100%;
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0.02);
+  border-radius: 20px;
+  cursor: pointer;
+  margin: 8px 0;
+  overflow: hidden;
+  position: relative;
+  padding: 0 10px;
+}
+
+.spotify-bars-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  position: relative;
+}
+
+.spotify-bar {
+  flex: 1;
+  margin: 0 1px;
+  background-color: #000;
+  border-radius: 2px;
+  height: 3px;
+  transition: height 0.1s ease-in-out;
+  transform-origin: bottom;
+}
+
+.spotify-progress-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.05);
+  z-index: 0;
+  border-radius: 20px 0 0 20px;
+}
+
+/* Mini Spotify-style Visualizer */
+.mini-spotify-visualizer {
+  width: 100%;
+  height: 24px;
+  background-color: rgba(0, 0, 0, 0.02);
+  border-radius: 12px;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  padding: 0 6px;
+}
+
+.mini-spotify-bars-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  position: relative;
+}
+
+.mini-spotify-bar {
+  flex: 1;
+  margin: 0 1px;
+  background-color: #000;
+  border-radius: 1px;
+  height: 2px;
+  transition: height 0.1s ease-in-out;
+  transform-origin: bottom;
+}
+
+.mini-spotify-progress-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.05);
+  z-index: 0;
+  border-radius: 12px 0 0 12px;
+}
+
+@keyframes barAnimation1 {
+  0% { height: 10%; }
+  20% { height: 70%; }
+  40% { height: 30%; }
+  60% { height: 80%; }
+  80% { height: 50%; }
+  100% { height: 10%; }
+}
+
+@keyframes barAnimation2 {
+  0% { height: 80%; }
+  20% { height: 30%; }
+  40% { height: 60%; }
+  60% { height: 40%; }
+  80% { height: 70%; }
+  100% { height: 80%; }
+}
+
+@keyframes barAnimation3 {
+  0% { height: 40%; }
+  20% { height: 60%; }
+  40% { height: 80%; }
+  60% { height: 30%; }
+  80% { height: 50%; }
+  100% { height: 40%; }
+}
+
+@keyframes barAnimation4 {
+  0% { height: 60%; }
+  20% { height: 40%; }
+  40% { height: 50%; }
+  60% { height: 70%; }
+  80% { height: 20%; }
+  100% { height: 60%; }
+}
+
+@keyframes barAnimation5 {
+  0% { height: 30%; }
+  20% { height: 80%; }
+  40% { height: 40%; }
+  60% { height: 60%; }
+  80% { height: 70%; }
+  100% { height: 30%; }
+}
+
+.animate-bar-1 {
+  animation: barAnimation1 2s infinite;
+}
+
+.animate-bar-2 {
+  animation: barAnimation2 2.2s infinite;
+}
+
+.animate-bar-3 {
+  animation: barAnimation3 1.8s infinite;
+}
+
+.animate-bar-4 {
+  animation: barAnimation4 2.4s infinite;
+}
+
+.animate-bar-5 {
+  animation: barAnimation5 2s infinite;
 }

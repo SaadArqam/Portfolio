@@ -27,35 +27,35 @@ export default function Home() {
       </div>
 
       {/* Header */}
-      <div className="flex justify-center w-full pt-6">
-        <div className="w-[80%] border border-black rounded-lg bg-white/50 backdrop-blur-sm">
-          <header className="flex justify-between items-center p-6">
+      <div className="flex justify-center w-full pt-6 px-4 sm:px-0">
+        <div className="w-full sm:w-[80%] border border-black rounded-lg bg-white/50 backdrop-blur-sm">
+          <header className="flex flex-col sm:flex-row justify-between items-center p-4 sm:p-6">
             <div
-              className="text-2xl font-black uppercase"
+              className="text-xl sm:text-2xl font-black uppercase mb-2 sm:mb-0"
               style={{ fontFamily: "var(--font-dela-gothic)" }}
             >
               Saad Arqam
             </div>
             <div className="flex items-center gap-2">
-              <span>Pune</span>
+              <span className="hidden sm:inline">Pune</span>
               <TimeDisplay />
-              <CloudIcon className="w-6 h-6" />
+              <CloudIcon className="w-5 h-5 sm:w-6 sm:h-6" />
             </div>
           </header>
         </div>
       </div>
 
       {/* Main Hero Content - Styled like the image */}
-      <main className="grid grid-cols-1 md:grid-cols-5 items-center px-12 md:px-24 lg:px-32 min-h-[80vh] relative">
+      <main className="grid grid-cols-1 md:grid-cols-5 items-center px-6 sm:px-12 md:px-24 lg:px-32 min-h-[80vh] relative pt-10 sm:pt-0">
         {/* Hero Text - Left-aligned like in the image - Taking 3 columns */}
         <div className="md:col-span-3">
-          <h1 className="text-7xl md:text-8xl tracking-tighter leading-[0.9] mb-6">
+          <h1 className="text-5xl sm:text-7xl md:text-8xl tracking-tighter leading-[0.9] mb-4 sm:mb-6">
             A Journey of
             <br />
             Curiosity
           </h1>
           <div
-            className="japanese-text text-3xl md:text-4xl mb-8"
+            className="japanese-text text-2xl sm:text-3xl md:text-4xl mb-6 sm:mb-8"
             data-meaning="'There are no experts. There's only us.'"
           >
             「専門家はい
@@ -67,7 +67,7 @@ export default function Home() {
             けです。」
           </div>
           <p
-            className="text-xl mb-10"
+            className="text-lg sm:text-xl mb-8 sm:mb-10"
             style={{ fontFamily: "var(--font-geist-sans)" }}
           >
             Design and code{" "}
@@ -75,14 +75,14 @@ export default function Home() {
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap gap-3 sm:gap-4">
             <Link href="/projects">
-              <button className="rounded-button px-8 sm:px-12 py-3 bg-white hover:bg-gray-100 transition-colors border border-gray-300 text-sm sm:text-base">
+              <button className="rounded-button px-6 sm:px-8 md:px-12 py-2.5 sm:py-3 bg-white hover:bg-gray-100 transition-colors border border-gray-300 text-sm sm:text-base">
                 Works
               </button>
             </Link>
             <Link href="/contact">
-              <button className="rounded-button px-8 sm:px-12 py-3 bg-white hover:bg-gray-100 transition-colors border border-gray-300 text-sm sm:text-base">
+              <button className="rounded-button px-6 sm:px-8 md:px-12 py-2.5 sm:py-3 bg-white hover:bg-gray-100 transition-colors border border-gray-300 text-sm sm:text-base">
                 Get in touch
               </button>
             </Link>
@@ -90,14 +90,14 @@ export default function Home() {
         </div>
 
         {/* Music Player - Taking 2 columns */}
-        <div className="md:col-span-2 flex justify-center items-center mt-16 md:mt-0">
+        <div className="md:col-span-2 flex justify-center items-center mt-12 md:mt-0">
           <MusicPlayer />
         </div>
 
         {/* Badge in top-right */}
-        <div className="absolute top-12 sm:top-24 right-8 sm:right-24 bg-white rounded-full p-1 border border-black">
-          <div className="rounded-full bg-black text-white p-2 flex items-center justify-center w-[40px] h-[40px] sm:w-[60px] sm:h-[60px]">
-            <span className="text-base sm:text-lg">★</span>
+        <div className="absolute top-2 right-6 sm:top-12 sm:right-8 md:top-24 md:right-24 bg-white rounded-full p-0.5 sm:p-1 border border-black">
+          <div className="rounded-full bg-black text-white p-1.5 sm:p-2 flex items-center justify-center w-[30px] h-[30px] sm:w-[40px] sm:h-[40px] md:w-[60px] md:h-[60px]">
+            <span className="text-sm sm:text-base md:text-lg">★</span>
           </div>
         </div>
       </main>

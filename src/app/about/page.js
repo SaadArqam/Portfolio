@@ -6,6 +6,7 @@ import {
   UserIcon,
   CodeIcon,
   RocketIcon,
+  FileTextIcon,
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -99,6 +100,21 @@ export default function About() {
                   「好奇心が私を
                   <br />
                   動かす原動力です。」
+                </div>
+
+                {/* Resume Button */}
+                <div className="mt-6 sm:mt-8">
+                  <a
+                    href="/docs/Resume-Saad Arqam.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block rounded-button px-6 sm:px-8 md:px-12 py-2.5 sm:py-3 bg-white hover:bg-gray-100 transition-colors border border-gray-300 text-sm sm:text-base"
+                  >
+                    <div className="flex items-center gap-2">
+                      <FileTextIcon className="w-4 h-4" />
+                      <span>Resume</span>
+                    </div>
+                  </a>
                 </div>
               </div>
             </div>

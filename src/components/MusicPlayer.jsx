@@ -63,16 +63,39 @@ export default function MusicPlayer() {
           <span>{!isNaN(duration) ? getFormattedTime(duration) : "0:00"}</span>
         </div>
 
-        <div
-          className="progress-bar"
-          ref={progressRef}
-          onClick={handleProgressChange}
-        >
+        {isPlaying ? (
           <div
-            className="progress-filled"
-            style={{ width: `${calculateProgress()}%` }}
-          ></div>
-        </div>
+            className="spotify-visualizer"
+            ref={progressRef}
+            onClick={handleProgressChange}
+          >
+            <div
+              className="spotify-progress-overlay"
+              style={{ width: `${calculateProgress()}%` }}
+            />
+            <div className="spotify-bars-container">
+              {Array(30)
+                .fill(0)
+                .map((_, i) => (
+                  <div
+                    key={i}
+                    className={`spotify-bar animate-bar-${(i % 5) + 1}`}
+                  />
+                ))}
+            </div>
+          </div>
+        ) : (
+          <div
+            className="progress-bar"
+            ref={progressRef}
+            onClick={handleProgressChange}
+          >
+            <div
+              className="progress-filled"
+              style={{ width: `${calculateProgress()}%` }}
+            />
+          </div>
+        )}
 
         <div className="controls">
           <button onClick={togglePlay} className="play-pause-btn">

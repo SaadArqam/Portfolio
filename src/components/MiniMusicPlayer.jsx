@@ -37,16 +37,39 @@ export default function MiniMusicPlayer() {
     <div className={`mini-player ${isExpanded ? "mini-player-expanded" : ""}`}>
       {isExpanded ? (
         <div className="mini-player-content">
-          <div
-            className="mini-player-progress"
-            ref={progressRef}
-            onClick={handleProgressChange}
-          >
+          {isPlaying ? (
             <div
-              className="mini-player-progress-filled"
-              style={{ width: `${calculateProgress()}%` }}
-            ></div>
-          </div>
+              className="mini-spotify-visualizer"
+              ref={progressRef}
+              onClick={handleProgressChange}
+            >
+              <div
+                className="mini-spotify-progress-overlay"
+                style={{ width: `${calculateProgress()}%` }}
+              />
+              <div className="mini-spotify-bars-container">
+                {Array(16)
+                  .fill(0)
+                  .map((_, i) => (
+                    <div
+                      key={i}
+                      className={`mini-spotify-bar animate-bar-${(i % 5) + 1}`}
+                    />
+                  ))}
+              </div>
+            </div>
+          ) : (
+            <div
+              className="mini-player-progress"
+              ref={progressRef}
+              onClick={handleProgressChange}
+            >
+              <div
+                className="mini-player-progress-filled"
+                style={{ width: `${calculateProgress()}%` }}
+              />
+            </div>
+          )}
 
           <div className="mini-player-controls">
             <button
