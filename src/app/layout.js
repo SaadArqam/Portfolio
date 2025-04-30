@@ -3,7 +3,6 @@ import "@fontsource/dela-gothic-one";
 import "@fontsource/noto-sans-jp";
 import "./globals.css";
 import CustomCursor from "@/components/CustomCursor";
-import PersistentAudio from "@/components/PersistentAudio";
 import InitialLoader from "@/components/InitialLoader";
 import PageTransitionEffect from "@/components/PageTransitionEffect";
 
@@ -39,7 +38,6 @@ export default function RootLayout({ children }) {
         <InitialLoader />
         <PageTransitionEffect />
         {children}
-        <PersistentAudio />
       </body>
     </html>
   );
