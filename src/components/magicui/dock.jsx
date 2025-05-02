@@ -70,6 +70,7 @@ const DockIcon = ({
   mouseX,
   className,
   children,
+  isActive = false,
   ...props
 }) => {
   const ref = useRef(null);
@@ -113,12 +114,17 @@ const DockIcon = ({
         padding,
       }}
       className={cn(
-        "flex aspect-square cursor-pointer items-center justify-center rounded-full",
+        "flex flex-col items-center justify-center rounded-full relative",
         className
       )}
       {...props}
     >
-      {children}
+      <div className="flex aspect-square cursor-pointer items-center justify-center">
+        {children}
+      </div>
+      {isActive && (
+        <div className="absolute -bottom-1 w-1.5 h-1.5 bg-black rounded-full" />
+      )}
     </motion.div>
   );
 };

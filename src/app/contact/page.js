@@ -247,7 +247,7 @@ export default function Contact() {
             </DockIcon>
           </Link>
           <Link href="/contact">
-            <DockIcon>
+            <DockIcon isActive={true}>
               <CloudIcon className="h-5 w-5" />
             </DockIcon>
           </Link>

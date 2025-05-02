@@ -208,7 +208,7 @@ export default function About() {
             </DockIcon>
           </Link>
           <Link href="/about">
-            <DockIcon>
+            <DockIcon isActive={true}>
               <UserIcon className="h-5 w-5" />
             </DockIcon>
           </Link>

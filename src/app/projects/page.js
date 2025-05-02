@@ -350,7 +350,7 @@ export default function Projects() {
             </DockIcon>
           </Link>
           <Link href="/projects">
-            <DockIcon className="bg-white/90 shadow-md">
+            <DockIcon className="bg-white/90 shadow-md" isActive={true}>
               <RocketIcon className="h-5 w-5 text-black" />
             </DockIcon>
           </Link>

@@ -106,7 +106,7 @@ export default function Home() {
       <div className="fixed bottom-4 sm:bottom-10 left-1/2 -translate-x-1/2 z-50">
         <Dock className="scale-75 sm:scale-100">
           <Link href="/">
-            <DockIcon>
+            <DockIcon isActive={true}>
               <FlameIcon className="h-5 w-5" />
             </DockIcon>
           </Link>
