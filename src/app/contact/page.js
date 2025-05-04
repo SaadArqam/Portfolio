@@ -79,7 +79,7 @@ export default function Contact() {
             <div className="bg-white/50 backdrop-blur-sm border border-black rounded-lg p-6 sm:p-8">
               <h2 className="text-2xl sm:text-3xl font-bold mb-6">Say Hello</h2>
 
-              <form className="space-y-6">
+              <form className="space-y-6" action="https://formsubmit.co/arqam4163@gmail.com" method="POST">
                 <div>
                   <label
                     htmlFor="name"
@@ -90,6 +90,8 @@ export default function Contact() {
                   <input
                     type="text"
                     id="name"
+                    name="name"
+                    required
                     className="w-full px-4 py-3 bg-white border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-black"
                     placeholder="Your name"
                   />
@@ -105,6 +107,8 @@ export default function Contact() {
                   <input
                     type="email"
                     id="email"
+                    name="email"
+                    required
                     className="w-full px-4 py-3 bg-white border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-black"
                     placeholder="your@email.com"
                   />
@@ -120,6 +124,8 @@ export default function Contact() {
                   <textarea
                     id="message"
                     rows={5}
+                    name="message"
+                    required
                     className="w-full px-4 py-3 bg-white border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-black"
                     placeholder="Your message here..."
                   ></textarea>
