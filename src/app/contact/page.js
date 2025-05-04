@@ -79,7 +79,7 @@ export default function Contact() {
             <div className="bg-white/50 backdrop-blur-sm border border-black rounded-lg p-6 sm:p-8">
               <h2 className="text-2xl sm:text-3xl font-bold mb-6">Say Hello</h2>
 
-              <form className="space-y-6" action="https://formsubmit.co/arqam4163@gmail.com" method="POST">
+              <form className="space-y-6" action="https://formsubmit.co/saadarqam03@gmail.com" method="POST">
                 <div>
                   <label
                     htmlFor="name"
